@@ -136,15 +136,7 @@ L(3) = Revolute('modified', 'd', 0, 'a', 1, 'alpha', 0, ...
     'qlim', [-90 90]*deg );
 
 L(4) = Revolute('modified', 'd', 0, 'a', 1, 'alpha', 0,  ...
-    'I', cI3, ...
-    'r', [-0.0203, -0.0141, 0.070], ...
-    'm', m3, ...
-    'Jm', 10^(-4), ...
-    'G', 500, ...
-    'B', Bfr, ...
-    'Tc', [0.132, -0.105], ...
-    'qlim', [-180 180]*deg );
-
+    'm', 1);
 
 L1(1) = Revolute('d', 1, 'a', 0, 'alpha', -pi/2, ...
     'I', cI1, ...
@@ -176,6 +168,9 @@ L1(3) = Revolute('d', 0, 'a', 1, 'alpha', 0,  ...
     'Tc', [0.132, -0.105], ...
     'qlim', [-90 90]*deg );
 
+L1(4) = Revolute('d', 0, 'a', 0, 'alpha', 0,  ...
+    'm', 1);
+
 p560beta = SerialLink(L, 'name', 'Puma 560beta', ...
     'manufacturer', 'Unimation', 'ikine', 'puma', 'comment', 'viscous friction; params of 8/95');
 
@@ -192,25 +187,25 @@ qn=[0 pi/4 -pi/2];
 homeb = [0 0 pi/2 0];
 holdb = [0 0 0 0];
 
-homea = [0 0 pi/2];
-holda = [0 0 0];
+homea = [0 0 pi/2 0];
+holda = [0 0 0 0];
 
-%p560beta.teach()
-%p560alpha.teach()
-
-%p560beta.plot(homeb)
-%p560beta.plot(holdb)
-%p560alpha.plot(homea)
-%p560alpha.plot(holda)
-
-%p560beta.gravload(homeb)
-%p560beta.gravload(holdb)
-%p560alpha.gravload(homea)
-%p560alpha.gravload(holda)
-
-%p560beta.jacob0(homeb)
-%p560beta.jacob0(holdb)
-%p560alpha.jacob0(homea)
-%p560alpha.jacob0(holda)
+% p560beta.teach()
+% p560alpha.teach()
+% 
+% p560beta.plot(homeb)
+% p560beta.plot(holdb)
+% p560alpha.plot(homea)
+% p560alpha.plot(holda)
+% 
+% p560beta.gravload(homeb)
+% p560beta.gravload(holdb)
+% p560alpha.gravload(homea)
+% p560alpha.gravload(holda)
+% 
+% p560beta.jacob0(homeb)
+% p560beta.jacob0(holdb)
+% p560alpha.jacob0(homea)
+% p560alpha.jacob0(holda)
 
 clear L
